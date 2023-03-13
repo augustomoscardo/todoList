@@ -1,0 +1,37 @@
+.tasksContainer {
+  margin: 0 auto;
+  margin-top: 4rem;
+
+  width: 46rem;
+}
+
+.tasksHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 2rem;
+}
+
+.tasksHeader p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-weight: bold;
+}
+
+.tasksHeader span {
+  padding: 2px 8px;
+  background: var(--gray-400);
+  color: var(--gray-200);
+  border-radius: 999px;
+}
+
+.tasksCreated {
+  color: var(--blue);
+}
+
+.tasksDone {
+  color: var(--purple);
+}
