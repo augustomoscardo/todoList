@@ -35,3 +35,13 @@
 .tasksDone {
   color: var(--purple);
 }
+
+@media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+
+  .tasksContainer {
+    width: 24rem;
+  }
+}

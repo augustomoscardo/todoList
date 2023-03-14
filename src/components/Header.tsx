@@ -4,8 +4,8 @@ import styles from './Header.module.css'
 
 export function Header() {
   return (
-    <div className={styles.logoContainer}>
+    <header className={styles.logoContainer}>
       <img src={logoImg} alt="" />
-    </div>
+    </header>
   )
 }

@@ -1,5 +1,5 @@
 import { PlusCircle } from 'phosphor-react'
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 import styles from './ToDoForm.module.css'
 
 export interface ToDo {
@@ -18,35 +18,41 @@ export function ToDoForm({ onCreateToDo }: ToDoFormProps) {
   function handleCreateTodo(event: FormEvent) {
     event.preventDefault()
 
-    if (newToDo === '') {
-      console.log('Insira um texto para a nova tarefa')
-      return
-    }
-
     const toDo = {
       completed: false,
       text: newToDo,
       createdAt: new Date(),
     }
 
-    console.log(toDo)
-
     onCreateToDo(toDo)
 
     setNewToDo('')
   }
 
+  function handleNewToDoInvalid(event: InvalidEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Esse campo é obrigatório.')
+  }
+
+  function handleNewToDoChange(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('')
+    setNewToDo(event.target.value)
+  }
+
+  const isNewToDoInputEmpty = newToDo.length === 0
+
   return (
-    <form className={styles.newToDoList}>
+    <form className={styles.newToDoList} onSubmit={handleCreateTodo}>
       <input
+        required
+        onInvalid={handleNewToDoInvalid}
         type="text"
         name="ToDo"
         id="ToDo"
         value={newToDo}
+        onChange={handleNewToDoChange}
         placeholder="Adicione uma nova tarefa"
-        onChange={(e) => setNewToDo(e.target.value)}
       />
-      <button onClick={handleCreateTodo}>
+      <button type="submit" disabled={isNewToDoInputEmpty}>
         Criar <PlusCircle size={16} />
       </button>
     </form>
